@@ -1,14 +1,14 @@
 import React from 'react';
-import Feelbar from './components/Feelbar';
-
+import Feelbar from './components/navigation/Feelbar';
+import {BrowserRouter} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Feelbar/>
-    
-      
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Feelbar/>
+      </div>
+    </BrowserRouter>
   );
 }
 
