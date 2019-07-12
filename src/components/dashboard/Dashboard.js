@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
+//connects redux to react; glue library that glues the two
+import { connect } from 'react-redux';
 
 class Dashboard extends Component{
+    
     render(){
+        //console.log(this.props);
         return(
             <div className="dashboard container">
                 <div className="row">
@@ -19,5 +23,11 @@ class Dashboard extends Component{
         );
     }
 }
-
-export default Dashboard
+//state from rootReducer
+const mapStateToProps = (state) => {
+    return{
+        projects: state.project.projects
+    }
+}
+//connect returns a higher order component 
+export default connect(mapStateToProps)(Dashboard)
