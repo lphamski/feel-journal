@@ -3,11 +3,12 @@ import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
 //connects redux to react; glue library that glues the two
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class Dashboard extends Component{
     
     render(){
-        //console.log(this.props);
 
         const { projects } = this.props;
         return(
@@ -27,9 +28,18 @@ class Dashboard extends Component{
 }
 //state from rootReducer
 const mapStateToProps = (state) => {
+    
     return{
-        projects: state.project.projects
+        //projects: state.project.projects  // DUMMY DATA
+        projects: state.firestore.ordered.projects // data from firebase
     }
 }
-//connect returns a higher order component 
-export default connect(mapStateToProps)(Dashboard)
+
+
+//connect returns a higher order component or 2 
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'projects'}
+    ] )
+)(Dashboard)
