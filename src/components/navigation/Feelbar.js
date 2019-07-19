@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import WhenSignedIn from './WhenSignedIn';
 import WhenSignedOut from './WhenSignedOut';
+import { connect } from 'react-redux';
 
 function Feelbar() {
     return (
@@ -14,5 +15,11 @@ function Feelbar() {
         </nav>
     );
   }
-  
-  export default Feelbar;
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return{
+
+  }
+}   
+export default connect(mapStateToProps)(Feelbar);
