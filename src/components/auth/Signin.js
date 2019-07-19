@@ -28,6 +28,9 @@ class Signin extends Component {
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
+                    <div className="red-text center">
+                        {authError ? <h4>{authError}</h4> : null}
+                    </div>
                     <h5 className="grey-text text-darken-3">Sign In</h5>
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
@@ -39,9 +42,7 @@ class Signin extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Login</button>
-                        <div className="red-text center">
-                            {authError ? <h4>{authError}</h4> : null}
-                        </div>
+                        
                     </div>
                 </form>
             </div>

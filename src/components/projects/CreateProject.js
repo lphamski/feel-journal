@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {createProject } from '../../store/actions/projectActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-//just testing my github configs
+
 class CreateProject extends Component {
     state = {
         title: '',
@@ -18,7 +18,9 @@ class CreateProject extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault(); //keep to prevent from reloading.
-        this.props.createProject(this.state)
+        this.props.createProject(this.state);
+        //sends user back to homepage after creating an entry
+        this.props.history.push('/');
     }
 
     render() {

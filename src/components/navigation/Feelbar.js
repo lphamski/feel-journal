@@ -5,9 +5,9 @@ import WhenSignedOut from './WhenSignedOut';
 import { connect } from 'react-redux';
 
 const Feelbar = (props) => {
-    const { auth } = props;
+    const { auth, profile } = props;
     //console.log(auth);
-    const links = auth.uid ? <WhenSignedIn/> : <WhenSignedOut/>
+    const links = auth.uid ? <WhenSignedIn profile={profile}/> : <WhenSignedOut/>
     return (
         <nav className="nav-wrapper grey darken-3">
           <div className="container">  
@@ -19,8 +19,10 @@ const Feelbar = (props) => {
   }
 
 const mapStateToProps = (state) => {
+  //console.log(state);
   return{
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   }
 }   
 export default connect(mapStateToProps)(Feelbar);

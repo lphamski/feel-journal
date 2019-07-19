@@ -3,12 +3,16 @@ export const createProject = (project) => {
         //async call to database TODO; used to add or do whatever to database
 
         const firestore = getFirestore(); //gives us a refference to firebase database
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+        //console.log(profile);
+
         firestore.collection('projects').add({
             ...project, //same as project.title, project.content
-            authorFirstName: 'Leon',
-            authorLastName: 'Pham',
-            authorId: 55555,
-            createdAt: new Date()
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: authorId,
+            createdAt: new Date(),
         }).then(() => {
             dispatch({type:'CREATE_PROJECT', project});
         }).catch((err) => {
