@@ -19,7 +19,7 @@ exports.entryCreated = functions.firestore
     .onCreate(doc => {
         const entry = doc.data();
         const notification = {
-            content: 'Added a new entry',
+            content: ' Added a new entry',
             user: `${entry.authorFirstName} ${entry.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp()
         }
@@ -28,7 +28,7 @@ exports.entryCreated = functions.firestore
 })
 
 exports.userJoined = functions.auth.user().onCreate(user => {
-    return admin.firestore.collection('users').doc(user.uid).get().then(doc => {
+    return admin.firestore().collection('users').doc(user.uid).get().then(doc => {
         const newUser = doc.data();
         const notification = {
             content: 'New user has joined',
