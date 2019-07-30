@@ -26,10 +26,8 @@ export const createProject = (project) => {
 export const deleteProject = (project) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
-        const profile = getState();
-        const authorId = getState().firebase.auth.uid;
-
-        firestore.collection('projects').delete().then(() => {
+        
+        firestore.collection('projects').doc(project.toDelete).delete().then(() => {
             dispatch({type: 'DELETE_PROJECT', project});
         }).catch((err) => {
             dispatch({type: 'DELETE_PROJECT_ERROR', err});

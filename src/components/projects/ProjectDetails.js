@@ -8,9 +8,9 @@ import DeleteProject from  '../projects/DeleteProject';
 
 const ProjectDetails = (props) => {
     const {project, auth} = props;
-    console.log(project);
+    const idToDelete = props.match.params.id;
+    //console.log(project);
     if (!auth.uid) return <Redirect to='/signin'/>
-
 
     
     
@@ -24,7 +24,7 @@ const ProjectDetails = (props) => {
                     </div>
                     <div className="card-action lighten-4 grey-text ">
                         <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
-                        <DeleteProject/>
+                        <DeleteProject toDelete={idToDelete}/>
                     </div>
                 </div>
                 
