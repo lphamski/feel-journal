@@ -21,3 +21,20 @@ export const createProject = (project) => {
         console.log('added to FIREBASE');
     }
 };
+
+
+export const deleteProject = (project) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        const profile = getState();
+        const authorId = getState().firebase.auth.uid;
+
+        firestore.collection('projects').delete().then(() => {
+            dispatch({type: 'DELETE_PROJECT', project});
+        }).catch((err) => {
+            dispatch({type: 'DELETE_PROJECT_ERROR', err});
+        })
+        console.log('deleted from FIREBASE');
+
+    }
+};
